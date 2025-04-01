@@ -58,7 +58,7 @@ export function AppSidebar() {
       <SidebarHeader className="pb-2">
         <div className="flex items-center gap-2 px-4 py-2">
           <Boxes className="h-6 w-6 text-warehouse-500" />
-          <span className="text-lg font-semibold">EntrepôtGestion</span>
+          <span className="text-lg font-semibold">Stockify</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
