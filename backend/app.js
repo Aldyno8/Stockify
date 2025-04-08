@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/stockify", {
-  })
+  .connect(process.env.atlas)
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch((err) => console.error("Connexion à MongoDB échouée !", err));
 
