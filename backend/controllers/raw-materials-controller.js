@@ -10,7 +10,7 @@ exports.addRawMaterial = (req, res, next) => {
 	rawMaterial.save()
 	.then((result) => {
 		if(!result){
-			res.status(400).json({ message: "Matières premières non ajoutée!" });
+			return res.status(400).json({ message: "Matières premières non ajoutée!" });
 		}
 		res.status(201).json({ message: "Matières premières ajoutée!" });	
 	})
@@ -23,7 +23,7 @@ exports.getAllRawMaterial = (req, res, next) => {
 	RawMaterial.find()
 	.then((material) => {
 		if(!material){
-			res.status(400).json({ message: "Matières premières non trouvées!" });
+			return res.status(400).json({ message: "Matières premières non trouvées!" });
 		}
 		res.status(200).json(material);
 	})
@@ -36,7 +36,7 @@ exports.getOneRawMaterial = (req, res, next) => {
 	RawMaterial.findOne({_id: req.params.id})
 	.then((material) => {
 		if(!material){
-			res.status(400).json({ message: "Matières premières non trouvée!" });
+			return res.status(400).json({ message: "Matières premières non trouvée!" });
 		}
 		res.status(200).json(material);
 	})
@@ -56,7 +56,7 @@ exports.updateRawMaterial = (req, res, next) => {
 	RawMaterial.updateOne({_id: req.params.id}, rawMaterial)
 	.then((result) => {
 		if(!result){
-			res.status(400).json({ message: "Matières premières non modifiée!" });
+			return res.status(400).json({ message: "Matières premières non modifiée!" });
 		}
 		res.status(200).json({ message: "Matières premières mis a jour!" });
 	})
@@ -69,7 +69,7 @@ exports.deleteRawMaterial = (req, res, next) => {
 	RawMaterial.deleteOne({_id:req.params.id})
 	.then((deleted) => {
 		if(!deleted){
-			res.status(400).json({message: "Echec de la suppression de la Matières"})
+			return res.status(400).json({message: "Echec de la suppression de la Matières"})
 		}
 		res.status(200).json({message:"Matières supprimé avec succès"})
 	})

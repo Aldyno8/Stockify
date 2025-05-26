@@ -10,12 +10,12 @@ exports.addFinishedProuct = (req, res, next) => {
 	finishedPrduct.save()
 	.then((result) => {
 		if(!result){
-			res.status(400).json({ message: "Produits fini non ajoutée!" });
+			return res.status(400).json({ message: "Produits fini non ajoutée!" });
 		}
-		res.status(201).json({ message: "Produits fini ajoutée!" });	
+		return res.status(201).json({ message: "Produits fini ajoutée!" });	
 	})
 	.catch((err) => {
-		res.status(500).json({ error: err });
+		return res.status(500).json({ error: err });
 	});
 };
 
@@ -46,17 +46,17 @@ exports.getOneFinishedProduct = (req, res, next) => {
 };
 
 exports.updateFinishedProduct = (req, res, next) => {
-	const rawMaterial = new FinishedProduct({
+	const finishedProduct = new FinishedProduct({
 		_id: req.params.id,
 		name: req.body.name,
 		quantity: req.body.quantity,
 		unity: req.body.unity,
 		update_date: req.body.update_date,
 	})
-	FinishedProduct.updateOne({_id: req.params.id}, rawMaterial)
+	FinishedProduct.updateOne({_id: req.params.id}, finishedProduct)
 	.then((result) => {
 		if(!result){
-			res.status(400).json({ message: "Produits fini non modifiée!" });
+			return res.status(400).json({ message: "Produits fini non modifiée!" });
 		}
 		res.status(200).json({ message: "Produits fini mis a jour!" });
 	})
@@ -69,7 +69,7 @@ exports.deleteFinishedProduct = (req, res, next) => {
 	FinishedProduct.deleteOne({_id:req.params.id})
 	.then((deleted) => {
 		if(!deleted){
-			res.status(400).json({message: "Echec de la suppression du produit"})
+			return res.status(400).json({message: "Echec de la suppression du produit"})
 		}
 		res.status(200).json({message:"produit supprimé avec succès"})
 	})
