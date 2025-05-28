@@ -1,5 +1,7 @@
 const express = reauire("express")
 const productionController = require("../controllers/production-controller")
-const Router = express.Router()
+const router = express.Router()
 
-router.post("api/production/", productionController.produce);
+router.post("/api/production/", productionController.produce);
+
+module.exports = router;

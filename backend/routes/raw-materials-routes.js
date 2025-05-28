@@ -3,9 +3,10 @@ const rawMaterialController = require("../controllers/raw-materials-controller")
 const router = express.Router();
 
 
-router.post("api/raw-material/add", rawMaterialController.addRawMaterial);
-router.post("api/raw-material/update", rawMaterialController.updateRawMaterial);
-router.post("api/raw-material/delete", rawMaterialController.deleteRawMateiral);
-router.get("api/raw-mateeial/getAll", rawMaterialController.getAllRawMaterial);
-router.get("api/raw-mateeial/getOne", rawMaterialController.getOneRawMaterial);
+router.post("/api/material/add", rawMaterialController.addRawMaterial);
+router.post("/api/material/update", rawMaterialController.updateRawMaterial);
+router.post("/api/material/delete", rawMaterialController.deleteRawMaterial);
+router.get("/api/material/getAll", rawMaterialController.getAllRawMaterial);
+router.get("/api/material/getOne", rawMaterialController.getOneRawMaterial);
 
+module.exports = router;

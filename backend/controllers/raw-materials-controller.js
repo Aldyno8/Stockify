@@ -5,7 +5,6 @@ exports.addRawMaterial = (req, res, next) => {
 		name: req.body.name,
 		quantity: req.body.quantity,
 		unity: req.body.unity,
-		update_date: req.body.update_date,
 	})
 	rawMaterial.save()
 	.then((result) => {

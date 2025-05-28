@@ -3,8 +3,10 @@ const finishedProductController = require("../controllers/finished-product-contr
 const router = express.Router();
 
 
-router.post("api/finished-product/add", finishedProductController.addFinishedProduct);
-router.post("api/finished-product/update/:id", finishedProductController.updateFinishedProduct);
-router.post("api/finished-product/delete/:id", finishedProductController.deleteFinishedProduct);
-router.get("api/finished-product/getAll", finishedProductController.getAllFinishedProduct);
-router.get("api/finished-product/getOne/:id", finishedProductController.getOneRawMaterial);
+router.post("/api/product/add", finishedProductController.addFinishedProuct);
+router.post("/api/product/update/:id", finishedProductController.updateFinishedProduct);
+router.post("/api/product/delete/:id", finishedProductController.deleteFinishedProduct);
+router.get("/api/product/getAll", finishedProductController.getAllFinishedProduct);
+router.get("/api/product/getOne/:id", finishedProductController.getOneFinishedProduct);
+
+module.exports = router;
