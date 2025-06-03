@@ -5,6 +5,7 @@ const rawMaterialRoutes = require("./routes/raw-materials-routes");
 const finishedProductRoutes = require("./routes/finished-product-routes");
 // const productionRoutes = require("./routes/production-routes");
 const authRoutes = require("./routes/auth-routes");
+const auth = require("./middlewares/auth-middleware");
 
 mongoose
   .connect(process.env.atlas)
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// app.use(auth); 
 app.use(rawMaterialRoutes);
 app.use(authRoutes);
 app.use(finishedProductRoutes);

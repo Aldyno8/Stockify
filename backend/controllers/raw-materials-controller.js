@@ -6,6 +6,8 @@ exports.addRawMaterial = (req, res, next) => {
 		quantity: req.body.quantity,
 		unity: req.body.unity,
 	})
+
+	console.log(req.body);
 	rawMaterial.save()
 	.then((result) => {
 		if(!result){
@@ -14,6 +16,7 @@ exports.addRawMaterial = (req, res, next) => {
 		res.status(201).json({ message: "Matières premières ajoutée!" });	
 	})
 	.catch((err) => {
+		// console.log(err);
 		res.status(500).json({ error: err });
 	});
 };
