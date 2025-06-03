@@ -4,9 +4,9 @@ const router = express.Router();
 
 
 router.post("/api/material/add", rawMaterialController.addRawMaterial);
-router.post("/api/material/update", rawMaterialController.updateRawMaterial);
-router.post("/api/material/delete", rawMaterialController.deleteRawMaterial);
+router.post("/api/material/update/:id", rawMaterialController.updateRawMaterial);
+router.delete("/api/material/delete/:id", rawMaterialController.deleteRawMaterial);
 router.get("/api/material/getAll", rawMaterialController.getAllRawMaterial);
-router.get("/api/material/getOne", rawMaterialController.getOneRawMaterial);
+router.get("/api/material/getOne/:id", rawMaterialController.getOneRawMaterial);
 
 module.exports = router;

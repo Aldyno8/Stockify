@@ -10,7 +10,6 @@ export const RawMaterials = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleFormOpen = () => {
-    console.log("j'ouvre le formulaire");
     setIsFormOpen(!isFormOpen);
   };
 
@@ -30,7 +29,10 @@ export const RawMaterials = () => {
         description="Manage your raw material inventory"
       />
       <MaterialAction handleFormOpen={handleFormOpen} />
-      <MaterialTable materials={materials} loading={loading} />
+      <MaterialTable
+        materials={materials}
+        loading={loading}
+      />
       {isFormOpen && (
         <MaterialForm
           handleSubmit={handleSubmit}
