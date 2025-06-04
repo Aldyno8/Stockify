@@ -63,10 +63,10 @@ export const CancelButton = ({ handleFormclose }) => {
   );
 };
 
-export const DeleteButton = ({ onDelete }) => {
+export const DeleteButton = ({ onDelete, id }) => {
   return (
     <div className="flex justify-center align-center bg-red-500 rounded-xl w-10 h-10 hover:bg-red-600 active:bg-red-800">
-      <button type="button" onClick={onDelete}>
+      <button type="button" onClick={onDelete} value={id}>
         <Trash2 />
       </button>
     </div>

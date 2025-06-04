@@ -1,26 +1,6 @@
 import { DeleteButton, EditButton } from "../atoms/button";
 
-export const MaterialTable = ({materials, loading}) => {
-
-	const handleDelete = async (id) => {
-		try {
-		  const response = await fetch(
-			`http://localhost:3000/api/material/delete/${id}`,
-			{
-			  method:"DELETE",
-			}
-		  );
-		  if (response.ok) {
-			console.log("suppression reussite")
-		  }
-		} catch (error) {
-		  console.error("Erreur lors de la suppression", error);
-		}
-	  };
-	
-	  const handleEdit = (e) => {
-		console.log("edit")
-	  }
+export const MaterialTable = ({materials, loading, onDelete, onEdit}) => {
 
 	if (loading) return <p>Chargement...</p>;
 	return (
@@ -46,8 +26,8 @@ export const MaterialTable = ({materials, loading}) => {
 				<td className="px-6 py-4">{item.quantity}</td>
 				<td className="px-6 py-4">{item.unity}</td>
 				<td className="px-6 py-4">{item.update_date}</td>
-				<td className="px-6 py-4"><EditButton onEdit={() =>{handleEdit(item._id)}} /></td>
-				<td className="px-6 py-4"><DeleteButton onDelete={()=>{handleDelete(item._id)}} /></td>
+				<td className="px-6 py-4"><EditButton onEdit={() =>{onEdit(item._id)}} /></td>
+				<td className="px-6 py-4"><DeleteButton onDelete={()=>{onDelete(item._id)}}/></td>
 			  </tr> 
 			))}
 		  </tbody>
