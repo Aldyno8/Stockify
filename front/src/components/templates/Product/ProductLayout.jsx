@@ -16,16 +16,27 @@ export const Product = () => {
   const [filteredProduct, setFilteredProduct] = useState([]);
 
   useEffect(() => {
-    if (filteredProduct) setSortedProduct(sortProducts());
+    if (products.length > 0 && filteredProduct.length === 0) {
+      setFilteredProduct(products);
+    }
+  }, [products]);
+  
+  useEffect(() => {
+    setSortedProduct(sortProducts());
   }, [filteredProduct]);
 
+  
   const searchProduct = (term) => {
-    const filtredProducts = products.filter((product) => {
-      return product.productName.toLowerCase().includes(term.toLowerCase());
+    return products.filter((product) => {
+      return Object.values(product).some((value) => {
+        if (typeof value === "string" || typeof value === "number") {
+          return value.toString().toLowerCase().includes(term.toLowerCase());
+        }
+        return false;
+      });
     });
-    return filtredProducts;
   };
-
+  
   const sortProducts = (key = "productName", order = "asc") => {
     if (!Array.isArray(filteredProduct)) return [];
     return [...filteredProduct].sort((a, b) => {
