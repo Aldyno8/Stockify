@@ -1,8 +1,7 @@
 import {Route, Routes } from 'react-router-dom'
 import { Dashboard } from './components/templates/Dashboard/DashboardLayout'
 import {Layout} from './components/templates/Layout'
-import { ProductFinished } from './components/templates/Product/ProductLayout'
-import { RawMaterials } from './components/templates/Material/MaterialsLayout'
+import { Product } from './components/templates/Product/ProductLayout'
 import {FinanceStatement} from './components/templates/Finance/FinanceLayout'
 import './App.css'
 
@@ -13,8 +12,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<Dashboard />} />
-        <Route path='Raw-materials' element={<RawMaterials />} />
-        <Route path='Product-finished' element={<ProductFinished />} />
+        <Route path='Product' element={<Product />} />
         <Route path='Financial-statement' element={<FinanceStatement />} />
       </Route>
     </Routes>

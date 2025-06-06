@@ -7,7 +7,7 @@ export const useMaterials = () => {
   const fetchData = async () => {
     setLoading(1);
     try {
-      const response = await fetch("http://localhost:3000/api/material/getAll");
+      const response = await fetch("http://localhost:3000/api/product/getAll");
       const data = await response.json();
       setMaterials(data);
     } catch (error) {

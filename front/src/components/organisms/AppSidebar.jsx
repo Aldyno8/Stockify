@@ -28,28 +28,18 @@ export const AppSidebar = () => {
           ${isActive ? "bg-slate-700 " : "hover:bg-slate-800"}`
             }
           >
-            <CircleDollarSign className="w-5 mr-3" /> 
+            <CircleDollarSign className="w-5 mr-3" />
             Finance
           </NavLink>
           <NavLink
-            to="/Raw-materials"
-            className={({ isActive }) =>
-              `flex flex-row justify-start items-center px-4 py-3 my-4 rounded-md text-white text-[15px] font-[20px] transition 
-          ${isActive ? "bg-slate-700" : "hover:bg-slate-800"}`
-            }
-          >
-            <Box className="w-5 mr-3" />
-            Raw Materials
-          </NavLink>
-          <NavLink
-            to="/Product-finished"
+            to="/Product"
             className={({ isActive }) =>
               `flex flex-row justify-start items-center px-4 py-3 my-4 rounded-md text-white text-[15px] font-[20px] transition 
           ${isActive ? "bg-slate-700 " : "hover:bg-slate-800"}`
             }
           >
             <PackageCheck className="w-5 mr-3" />
-            Product Finished
+            Inventory
           </NavLink>
         </nav>
       </div>

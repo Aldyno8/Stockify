@@ -1,9 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const rawMaterialRoutes = require("./routes/raw-materials-routes");
-const finishedProductRoutes = require("./routes/finished-product-routes");
-// const productionRoutes = require("./routes/production-routes");
+const productRoutes = require("./routes/product-routes");
 const authRoutes = require("./routes/auth-routes");
 const auth = require("./middlewares/auth-middleware");
 
@@ -27,9 +25,8 @@ app.use((req, res, next) => {
 });
 
 // app.use(auth); 
-app.use(rawMaterialRoutes);
+app.use(productRoutes);
 app.use(authRoutes);
-app.use(finishedProductRoutes);
 // app.use(productionRoutes);
 
 module.exports = app;
