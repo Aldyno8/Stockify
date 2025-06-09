@@ -16,9 +16,7 @@ export const TextInput = ({ title, setName, value }) => {
 export const NumberInput = ({
   title,
   quantityValue,
-  unityValue,
   setQuantity,
-  setUnity,
 }) => {
   return (
     <input

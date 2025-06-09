@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const morgan = require("morgan")
 const app = express();
 const productRoutes = require("./routes/product-routes");
 const authRoutes = require("./routes/auth-routes");
@@ -25,7 +26,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(auth); 
+app.use(morgan("dev")); 
 app.use(productRoutes);
 app.use(authRoutes);
 app.use(orderRoutes);

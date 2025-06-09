@@ -1,12 +1,13 @@
 import { PageTitle } from "../../atoms/PageTitle";
 import { Restockingstat } from "../../moleculs/RestockingStat";
-import { RestockingTab } from "../../moleculs/RestockingTab";
+import { RestockingTab } from "../../moleculs/Table";
 import { useOrder } from "../../../hooks/useOrder";
 import { TabAction } from "../../moleculs/TabAction";
 import { useState, useEffect } from "react";
+import { OrderForm } from "../../moleculs/Form";
 
 export const Restock = () => {
-  const { orders, setOrder, fetchData } = useOrder();
+  const { orders, loading, fetchData } = useOrder();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [itemsToUpdate, setItemsToUpdate] = useState(null);
   const [isCardOpen, setIsCardOpen] = useState(false);
@@ -33,7 +34,7 @@ export const Restock = () => {
     });
   };
 
-  const sortProducts = (key = "Name", order = "asc") => {
+  const sortProducts = (key = "product_name", order = "asc") => {
     if (!Array.isArray(filteredOrder)) return [];
     return [...filteredOrder].sort((a, b) => {
       const valA = a[key];
@@ -108,7 +109,23 @@ export const Restock = () => {
         onSearch={handleSearch}
         onSort={handleSort}
       />
-      <RestockingTab items={orders} />
+      <RestockingTab items={sortedProduct} />
+      {isFormOpen && (
+        <OrderForm
+          handleSubmit={() => {
+            setIsFormOpen(false);
+            fetchData();
+            setItemsToUpdate(null);
+          }}
+          handleFormclose={() => {
+            setIsFormOpen(false);
+            fetchData();
+            setItemsToUpdate(null);
+          }}
+          itemToUpdate={itemsToUpdate}
+          typeData={"order"}
+        />
+      )}
     </div>
   );
 };

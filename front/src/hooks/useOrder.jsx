@@ -9,7 +9,6 @@ export const useOrder = () => {
     try {
       const response = await fetch("http://localhost:3000/api/order/getAll");
       const data = await response.json();
-      console.log(data)
       setOrder(data);
     } catch (error) {
       console.error("Erreur lors du chargement des commandes:", error);

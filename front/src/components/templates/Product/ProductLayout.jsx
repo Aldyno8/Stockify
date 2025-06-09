@@ -2,7 +2,7 @@ import { useProduct } from "../../../hooks/useProduct";
 import { PageTitle } from "../../atoms/PageTitle";
 import { TabAction } from "../../moleculs/TabAction";
 import { DataTable } from "../../moleculs/Table";
-import { Form } from "../../moleculs/Form";
+import { InventoryForm } from "../../moleculs/Form";
 import { ProductCard } from "../../atoms/card";
 import { useEffect, useState } from "react";
 
@@ -117,7 +117,7 @@ export const Product = () => {
         onView={handleView}
       />
       {isFormOpen && (
-        <Form
+        <InventoryForm
           handleSubmit={() => {
             fetchData();
             setIsFormOpen(false); 
