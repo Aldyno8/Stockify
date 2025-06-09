@@ -1,32 +1,30 @@
-import { useProduct } from "../../../hooks/useProduct";
 import { PageTitle } from "../../atoms/PageTitle";
+import { Restockingstat } from "../../moleculs/RestockingStat";
+import { RestockingTab } from "../../moleculs/RestockingTab";
+import { useOrder } from "../../../hooks/useOrder";
 import { TabAction } from "../../moleculs/TabAction";
-import { DataTable } from "../../moleculs/Table";
-import { Form } from "../../moleculs/Form";
-import { ProductCard } from "../../atoms/card";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-export const Product = () => {
-  const { products, loading, fetchData } = useProduct();
+export const Restock = () => {
+  const { orders, setOrder, fetchData } = useOrder();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [itemsToUpdate, setItemsToUpdate] = useState(null);
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [itemToView, setItemToView] = useState(null);
   const [sortedProduct, setSortedProduct] = useState([]);
-  const [filteredProduct, setFilteredProduct] = useState([]);
+  const [filteredOrder, setFilteredOrder] = useState([]);
 
   useEffect(() => {
-      setFilteredProduct(products);
-  }, [products]);
-  
+    setFilteredOrder(orders);
+  }, [orders]);
+
   useEffect(() => {
     setSortedProduct(sortProducts());
-  }, [filteredProduct]);
-
+  }, [filteredOrder]);
 
   const searchProduct = (term) => {
-    return products.filter((product) => {
-      return Object.values(product).some((value) => {
+    return orders.filter((order) => {
+      return Object.values(order).some((value) => {
         if (typeof value === "string" || typeof value === "number") {
           return value.toString().toLowerCase().includes(term.toLowerCase());
         }
@@ -34,10 +32,10 @@ export const Product = () => {
       });
     });
   };
-  
-  const sortProducts = (key = "productName", order = "asc") => {
-    if (!Array.isArray(filteredProduct)) return [];
-    return [...filteredProduct].sort((a, b) => {
+
+  const sortProducts = (key = "Name", order = "asc") => {
+    if (!Array.isArray(filteredOrder)) return [];
+    return [...filteredOrder].sort((a, b) => {
       const valA = a[key];
       const valB = b[key];
 
@@ -56,7 +54,7 @@ export const Product = () => {
 
   const handleSearch = (term) => {
     const filtered = searchProduct(term);
-    setFilteredProduct(filtered);
+    setFilteredOrder(filtered);
   };
 
   const handleSort = (key, order) => {
@@ -67,7 +65,7 @@ export const Product = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/product/delete/${id}`,
+        `http://localhost:3000/api/order/delete/${id}`,
         {
           method: "DELETE",
         }
@@ -84,23 +82,24 @@ export const Product = () => {
   };
 
   const handleEdit = (id) => {
-    const items = products.find((product) => product._id === id);
+    const items = orders.find((order) => order._id === id);
     setItemsToUpdate(items);
     setIsFormOpen(true);
   };
 
   const handleView = (id) => {
-    const item = products.find((item) => item._id === id);
+    const item = orders.find((item) => item._id === id);
     setItemToView(item);
     setIsCardOpen(true);
   };
 
   return (
-    <>
+    <div>
       <PageTitle
-        title="Finished product"
-        description="Manage your finished product inventory"
+        title={"Restocking stock"}
+        description={"manages restocking for all your products "}
       />
+      <Restockingstat />
       <TabAction
         handleFormOpen={() => {
           setIsFormOpen(true);
@@ -109,34 +108,7 @@ export const Product = () => {
         onSearch={handleSearch}
         onSort={handleSort}
       />
-      <DataTable
-        items={sortedProduct}
-        loading={loading}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-        onView={handleView}
-      />
-      {isFormOpen && (
-        <Form
-          handleSubmit={() => {
-            fetchData();
-            setIsFormOpen(false); 
-            setItemsToUpdate(null); 
-          }}
-          handleFormclose={() => {
-            setIsFormOpen(false);
-            setItemsToUpdate(null);
-          }}
-          itemToUpdate={itemsToUpdate}
-          typeData={"product"}
-        />
-      )}
-      {isCardOpen && (
-        <ProductCard
-          product={itemToView}
-          onClose={() => setIsCardOpen(false)}
-        />
-      )}
-    </>
+      <RestockingTab items={orders} />
+    </div>
   );
 };

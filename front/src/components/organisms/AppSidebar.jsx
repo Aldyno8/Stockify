@@ -1,6 +1,13 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { House, Box, PackageCheck, CircleDollarSign } from "lucide-react";
+import {
+  House,
+  Box,
+  PackageCheck,
+  CircleDollarSign,
+  PackagePlus,
+  TrendingUpDown,
+} from "lucide-react";
 
 export const AppSidebar = () => {
   return (
@@ -40,6 +47,26 @@ export const AppSidebar = () => {
           >
             <PackageCheck className="w-5 mr-3" />
             Inventory
+          </NavLink>
+          <NavLink
+            to="/Restock"
+            className={({ isActive }) =>
+              `flex flex-row justify-start items-center px-4 py-3 my-4 rounded-md text-white text-[15px] font-[20px] transition 
+          ${isActive ? "bg-slate-700 " : "hover:bg-slate-800"}`
+            }
+          >
+            <PackagePlus className="w-5 mr-3" />
+            Restocking
+          </NavLink>
+          <NavLink
+            to="/Sales"
+            className={({ isActive }) =>
+              `flex flex-row justify-start items-center px-4 py-3 my-4 rounded-md text-white text-[15px] font-[20px] transition 
+          ${isActive ? "bg-slate-700 " : "hover:bg-slate-800"}`
+            }
+          >
+            <TrendingUpDown className="w-5 mr-3" />
+            Sales
           </NavLink>
         </nav>
       </div>

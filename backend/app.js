@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const productRoutes = require("./routes/product-routes");
 const authRoutes = require("./routes/auth-routes");
+const orderRoutes = require("./routes/order-routes")
 const auth = require("./middlewares/auth-middleware");
 
 mongoose
@@ -27,6 +28,6 @@ app.use((req, res, next) => {
 // app.use(auth); 
 app.use(productRoutes);
 app.use(authRoutes);
-// app.use(productionRoutes);
+app.use(orderRoutes);
 
 module.exports = app;

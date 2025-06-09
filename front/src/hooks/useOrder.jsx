@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 
-export const useMaterials = () => {
-  const [materials, setMaterials] = useState([]);
+export const useOrder = () => {
+  const [orders, setOrder] = useState([]);
   const [loading, setLoading] = useState(1);
 
   const fetchData = async () => {
     setLoading(1);
     try {
-      const response = await fetch("http://localhost:3000/api/product/getAll");
+      const response = await fetch("http://localhost:3000/api/order/getAll");
       const data = await response.json();
-      setMaterials(data);
+      console.log(data)
+      setOrder(data);
     } catch (error) {
-      console.error("Erreur lors du chargement des matières premières", error);
+      console.error("Erreur lors du chargement des commandes:", error);
     } finally {
       setLoading(0);
     }
@@ -20,5 +21,5 @@ export const useMaterials = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  return { materials, loading, fetchData };
+  return { orders, loading, fetchData };
 };
